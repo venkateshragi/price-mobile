@@ -10,10 +10,7 @@
 		}
 		
 		function makeAjaxCall(){
-			$.getJSON("http://svbcgold.com/LivePriceService.asmx/getSVBCPrice", {}, refreshData)
-		}
-		
-		function refreshData(response){
+			$.getJSON("http://svbcgold.com/LivePriceService.asmx/getSVBCPrice", refreshData(response){
 				var amountToBeAddedForGold = properties.addAmountForGold;
 				var amountToBeAddedForSilver = properties.addAmountForSilver;
 				var pricePerGm = (response.SpotGold999 * 1) + amountToBeAddedForGold;
@@ -23,6 +20,7 @@
 				document.getElementById("lblGold").innerHTML = (response.GoldCMX * 1) + amountToBeAddedForGold;
 				document.getElementById("lblSilver").innerHTML = (response.SilverCMX * 1) + amountToBeAddedForSilver;
 				document.getElementById("lblUsd").innerHTML = (response.USDInr * 1);			
+			})
 		}
 	</script>
 </head>
