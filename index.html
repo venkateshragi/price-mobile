@@ -1,0 +1,106 @@
+<html>
+<head>
+	<title>MahaLakshmi Jewellers</title>
+	<style type="text/css">
+		body{ margin: 0; height: 100%; font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#363636;}
+		.leftblock{ float:left; width:224px;}
+		.liveprice .titlediv{  width:65px; float:left; padding: 11px 0 0 4px;}
+		.liveprice .pricediv{ width:115px; float:right; padding: 11px 0 0 0; }
+		.priceClass{font-size:14px; float:left; width:60px; text-align:right; padding-right:5px;}
+		.liveprice{ width:224px; border:solid 1px #999; background:#f5f5f5 no-repeat center 45px;}
+		.greyrow{height:37px; border-top: 1px solid #c6c6c6;}
+		.pinkrow{ height:37px; border-top: 1px solid #c6c6c6;}
+		.purity{color:#888888; font-size:10px; width:30px; float:left; padding-top:5px;}
+		.gram{color:#888888; font-size:10px;}
+		sub{ font-size:10px; }
+		sup{font-size:10px; }
+		a{ color:#ce8c42}
+		
+	</style>
+	<script src="lib/jquery-1.8.2.min.js"></script>	
+	<script type="text/javascript" src="js/properties.js"></script>
+	<script type="text/javascript">
+		function onLoad() {
+			setInterval(makeAjaxCall, 3000);
+		}
+		
+		function makeAjaxCall(){
+			$.getJSON("http://svbcgold.com/LivePriceService.asmx/getSVBCPrice", {}, refreshData)
+		}
+		
+		function refreshData(response){
+				var amountToBeAddedForGold = properties.addAmountForGold;
+				var amountToBeAddedForSilver = properties.addAmountForSilver;
+				var pricePerGm = (response.SpotGold999 * 1) + amountToBeAddedForGold;
+				document.getElementById("lblSpotGold999").innerHTML = pricePerGm;
+				document.getElementById("lblSpotSilver999").innerHTML = (response.SpotSilver999 * 1) + amountToBeAddedForSilver;
+				document.getElementById("lblSpotGold916").innerHTML = pricePerGm * 50;
+				document.getElementById("lblGold").innerHTML = (response.GoldCMX * 1) + amountToBeAddedForGold;
+				document.getElementById("lblSilver").innerHTML = (response.SilverCMX * 1) + amountToBeAddedForSilver;
+				document.getElementById("lblUsd").innerHTML = (response.USDInr * 1);			
+		}
+	</script>
+</head>
+<body onload="onLoad()">
+	<div class="liveprice">
+        <div class="greyrow">
+            <div class="titlediv">
+                Spot Gold
+            </div>
+            <div class="purity"><sup>999.0</sup> <sub>24ct</sub></div>
+            <div class="pricediv">
+                <img align="left" src="images/rupee.png">
+                <div class="priceClass">
+                	<span id="lblSpotGold999" style="color: black; "></span>
+                </div> 
+                <span class="gram">Per gm</span>
+            </div>
+        </div>
+        <div class="pinkrow">
+            <div class="titlediv">
+                Spot Silver
+            </div>
+            <div class="purity"><sup>999.0</sup><sub></sub> </div>
+            <div class="pricediv">
+                <img align="left" src="images/rupee.png">
+                <div class="priceClass"><span id="lblSpotSilver999" style="color: black; "></span></div> <span class="gram">Per kg</span>
+            </div>
+        </div>
+        <div class="greyrow">
+            <div class="titlediv">
+                Spot Gold
+            </div>
+           
+            <div class="purity"><sup>999.0</sup> <sub>24ct</sub></div>
+            <div class="pricediv">
+                <img align="left" src="images/rupee.png" alt="">
+                <div class="priceClass"><span id="lblSpotGold916" style="color: black; "></span></div> <span class="gram">50 gm</span>
+            </div>
+        </div>
+        <div class="pinkrow">
+            <div class="titlediv">
+                Gold</div>
+            <div class="pricediv">
+                <img align="left" src="images/dollar.png">
+                <div class="priceClass"><span id="lblGold" style="color: black; "></span></div><span class="gram"></span>
+            </div>
+        </div>
+        <div class="greyrow">
+            <div class="titlediv">
+                Silver</div>
+            <div class="pricediv">
+                <img align="left" src="images/dollar.png">
+                <div class="priceClass"><span id="lblSilver" style="color: black; "></span></div> <span class="gram"></span>
+            </div>
+        </div>
+        <div class="pinkrow">
+            <div class="titlediv">
+                USD/INR</div>
+            <div class="pricediv">
+                <img align="left" src="images/rupee.png" alt="">
+                <div class="priceClass"><span id="lblUsd" style="color: black; "></span></div> 
+            </div>
+        </div>
+    </div>
+</body>
+</html>
