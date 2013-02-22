@@ -2,8 +2,10 @@ var app = {
 
 	onLoad : function() {
 		$(window).load(function(){			
+			console.log("in load function");
 			setInterval(function() {
 				$.getJSON("http://svbcgold.com/LivePriceService.asmx/getSVBCPrice", function(response){
+					console.log("response:" + response);
 					var amountToBeAddedForGold = properties.addAmountForGold;
 					var amountToBeAddedForSilver = properties.addAmountForSilver;
 					var pricePerGm = (response.SpotGold999 * 1) + amountToBeAddedForGold;
