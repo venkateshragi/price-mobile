@@ -1,25 +1,35 @@
-var app = {
+var refreshData = function(){
+	$.ajax({
+		type: "POST", 
+		url: "http://svbcgold.com/LivePriceService.asmx/getSVBCPrice",
+		success : function(data){
+			 var jSonObj = $.parseJSON(data.d);
+			 $('#lblSpotGold999').text(jSonObj.SpotGold999 * 1 + properties.addAmountForGold);
+			 $('#lblSpotGold999').css({ color: jSonObj.colrGold999});
 
-	onLoad : function() {
-		$.support.cors = true;
-		$.mobile.allowCrossDomainPages = true;
-		$(window).load(function(){			
-			console.log("in load function");
-			setInterval(function() {
-				$.getJSON("http://svbcgold.com/LivePriceService.asmx/getSVBCPrice", function(response){
-					console.log("response:" + response);
-					var amountToBeAddedForGold = properties.addAmountForGold;
-					var amountToBeAddedForSilver = properties.addAmountForSilver;
-					var pricePerGm = (response.SpotGold999 * 1) + amountToBeAddedForGold;
-					$("#lblSpotGold999").html(pricePerGm);
-					$("#lblSpotSilver999").html((response.SpotSilver999 * 1) + amountToBeAddedForSilver);
-					$("#lblSpotGold916").html(pricePerGm * 50);
-					$("#lblGold").html((response.GoldCMX * 1) + amountToBeAddedForGold);
-					$("#lblSilver").html((response.SilverCMX * 1) + amountToBeAddedForSilver);
-					$("#lblUsd").html((response.USDInr * 1));
-				})}, 3000);
-		});			
-	}	
-}
+			 $('#lblSpotSilver999').text(jSonObj.SpotSilver999 * 1 + properties.addAmountForSilver);
+			 $('#lblSpotSilver999').css({ color: jSonObj.colrSilver999});
 
-app.onLoad();
+			 $('#lblSpotGold916').text(jSonObj.SpotGold916 * 1 + properties.addAmountForGold);
+			 $('#lblSpotGold916').css({ color: jSonObj.colrGold916});
+
+			 $('#lblGold').text(jSonObj.GoldCMX);
+			 $('#lblGold').css({ color: jSonObj.colrGoldCMX});
+
+			 $('#lblSilver').text(jSonObj.SilverCMX);
+			 $('#lblSilver').css({ color: jSonObj.colrSilverCMX});
+
+			 $('#lblUsd').text(jSonObj.USDInr);
+			 $('#lblUsd').css({ color: jSonObj.colrUSDInr});
+		},
+		error : function(response){
+			console.log("failed");
+		},
+		contentType : "application/json",
+		dataType : "json"
+	});
+};
+
+$(window).load(function(){			
+	setInterval(refreshData, 3000);
+});
