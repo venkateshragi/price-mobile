@@ -15,7 +15,7 @@
 		$.ajax({
 			type: "POST", 
 			url: "http://svbcgold.com/LivePriceService.asmx/getSVBCPrice",
-			sucess : function(response){
+			success : function(response){
 					console.log("response:" + response);
 					var amountToBeAddedForGold = properties.addAmountForGold;
 					var amountToBeAddedForSilver = properties.addAmountForSilver;
@@ -27,6 +27,9 @@
 					$("#lblSilver").html((response.SilverCMX * 1) + amountToBeAddedForSilver);
 					$("#lblUsd").html((response.USDInr * 1));
 				},
+			failure : function(){
+				console.log("failed");
+			},
 			dataType: "application/json"
 		});		
 	</script>
