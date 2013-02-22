@@ -14,10 +14,9 @@
     <author email="venkateshragi@gmail.com">
         Venkatesh Ragi
     </author>   
-    
-    <feature name="http://api.phonegap.com/1.0/network"/>
-    <feature name="http://api.phonegap.com/1.0/notification"/>
 	
+	<preference name="permissions" value="none"/>
+        	
 	<access origin="http://svbcgold.com/LivePriceService.asmx/getSVBCPrice"/>
  
 </widget>
