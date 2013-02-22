@@ -1,18 +1,18 @@
 var app = {
 
 	onLoad : function() {
-		$(window).load(function(){
+		$(window).load(function(){			
 			setInterval(function() {
 				$.getJSON("http://svbcgold.com/LivePriceService.asmx/getSVBCPrice", function(response){
 					var amountToBeAddedForGold = properties.addAmountForGold;
 					var amountToBeAddedForSilver = properties.addAmountForSilver;
 					var pricePerGm = (response.SpotGold999 * 1) + amountToBeAddedForGold;
-					document.getElementById("lblSpotGold999").innerHTML = pricePerGm;
-					document.getElementById("lblSpotSilver999").innerHTML = (response.SpotSilver999 * 1) + amountToBeAddedForSilver;
-					document.getElementById("lblSpotGold916").innerHTML = pricePerGm * 50;
-					document.getElementById("lblGold").innerHTML = (response.GoldCMX * 1) + amountToBeAddedForGold;
-					document.getElementById("lblSilver").innerHTML = (response.SilverCMX * 1) + amountToBeAddedForSilver;
-					document.getElementById("lblUsd").innerHTML = (response.USDInr * 1);			
+					$("#lblSpotGold999").html(pricePerGm);
+					$("#lblSpotSilver999").html((response.SpotSilver999 * 1) + amountToBeAddedForSilver);
+					$("#lblSpotGold916").html(pricePerGm * 50);
+					$("#lblGold").html((response.GoldCMX * 1) + amountToBeAddedForGold);
+					$("#lblSilver").html((response.SilverCMX * 1) + amountToBeAddedForSilver);
+					$("#lblUsd").html((response.USDInr * 1));
 				})}, 3000);
 		});			
 	}	
