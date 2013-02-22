@@ -16,7 +16,8 @@
 			type: "POST", 
 			url: "http://svbcgold.com/LivePriceService.asmx/getSVBCPrice",
 			success : function(response){
-					console.log("response:" + response);
+					var result = JSON.parse(response);
+					console.log("response:" + result);
 					var amountToBeAddedForGold = properties.addAmountForGold;
 					var amountToBeAddedForSilver = properties.addAmountForSilver;
 					var pricePerGm = (response.SpotGold999 * 1) + amountToBeAddedForGold;
