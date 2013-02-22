@@ -27,10 +27,11 @@
 					$("#lblSilver").html((response.SilverCMX * 1) + amountToBeAddedForSilver);
 					$("#lblUsd").html((response.USDInr * 1));
 				},
-			failure : function(){
+			error : function(resposne){
 				console.log("failed");
 			},
-			dataType: "application/json"
+			contentType : "application/json",
+			dataType : "json"
 		});		
 	</script>
 </head>
