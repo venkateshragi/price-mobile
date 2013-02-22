@@ -1,12 +1,13 @@
 var app = {
-	function onLoad() {
+
+	onLoad : function() {
 		$('body').load(function(){
 			setInterval(makeAjaxCall, 3000);
-		})			
-	}
+		});			
+	},
 		
-	function makeAjaxCall(){
-		$.getJSON("http://svbcgold.com/LivePriceService.asmx/getSVBCPrice", refreshData(response){
+	makeAjaxCall : function() {
+		$.getJSON("http://svbcgold.com/LivePriceService.asmx/getSVBCPrice", function(response){
 			var amountToBeAddedForGold = properties.addAmountForGold;
 			var amountToBeAddedForSilver = properties.addAmountForSilver;
 			var pricePerGm = (response.SpotGold999 * 1) + amountToBeAddedForGold;
@@ -16,7 +17,7 @@ var app = {
 			document.getElementById("lblGold").innerHTML = (response.GoldCMX * 1) + amountToBeAddedForGold;
 			document.getElementById("lblSilver").innerHTML = (response.SilverCMX * 1) + amountToBeAddedForSilver;
 			document.getElementById("lblUsd").innerHTML = (response.USDInr * 1);			
-		})
+		});
 	}
 }
 
