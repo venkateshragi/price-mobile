@@ -6,8 +6,9 @@ var refreshData = function(){
 			 var jSonObj = $.parseJSON(data.d);
 			 $('#lblSpotGold999').text(jSonObj.SpotGold999 * 1 + properties.addAmountForGold);
 			 $('#lblSpotGold999').css({ color: jSonObj.colrGold999});
-
-			 $('#lblSpotSilver999').text(jSonObj.SpotSilver999 * 1 + properties.addAmountForSilver);
+			 
+			 //The price mentioned in properties.js is perGM. So multiplying by 100 to calculate perKG
+			 $('#lblSpotSilver999').text(jSonObj.SpotSilver999 * 1 + properties.addAmountForSilver * 100);
 			 $('#lblSpotSilver999').css({ color: jSonObj.colrSilver999});
 
 			 $('#lblSpotGold916').text(jSonObj.SpotGold916 * 1 + properties.addAmountForGold);
