@@ -1,7 +1,7 @@
 var refreshData = function(){
 	$.ajax({
 		type: "POST", 
-		url: "change this",
+		url: "copy_url_from_web_app",
 		success : function(data){
 			 var jSonObj = $.parseJSON(data.d);
 			 $('#lblSpotGold999').text(jSonObj.SpotGold999 * 1 + properties.addAmountForGold);

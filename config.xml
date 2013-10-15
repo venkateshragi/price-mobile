@@ -17,6 +17,6 @@
 	
 	<preference name="permissions" value="none"/>
         	
-	<access origin="http://svbcgold.com/LivePriceService.asmx/getSVBCPrice"/>
+	<access origin="copy_url_from_web_app"/>
  
 </widget>
