@@ -1,7 +1,7 @@
 var refreshData = function(){
 	$.ajax({
 		type: "POST", 
-		url: "http://svbcgold.com/LivePriceService.asmx/getSVBCPrice",
+		url: "change this",
 		success : function(data){
 			 var jSonObj = $.parseJSON(data.d);
 			 $('#lblSpotGold999').text(jSonObj.SpotGold999 * 1 + properties.addAmountForGold);
